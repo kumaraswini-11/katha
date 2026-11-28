@@ -1,0 +1,60 @@
+{
+  "$schema": "https://turborepo.dev/schema.json",
+  "ui": "tui",
+  "boundaries": {
+    "tags": {
+      "app": {
+        "dependencies": {
+          "deny": ["service"]
+        }
+      },
+      "service": {
+        "dependencies": {
+          "deny": ["app", "service"]
+        }
+      },
+      "pkg": {
+        "dependencies": {
+          "deny": ["app", "service"]
+        }
+      },
+      "contracts": {
+        "dependencies": {
+          "deny": ["app", "service", "ui", "infra"]
+        }
+      },
+      "config": {
+        "dependencies": {
+          "deny": ["app", "service", "ui"]
+        }
+      },
+      "infra": {
+        "dependencies": {
+          "deny": ["app", "service", "ui"]
+        }
+      }
+    }
+  },
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": ["dist/**", ".output/**"]
+    },
+    "check-types": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$"]
+    },
+    "test": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "clean": {
+      "cache": false
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "katha",
+  "private": true,
+  "license": "MIT",
+  "packageManager": "pnpm@12.15.0",
+  "engines": {
+    "node": ">=26.0.0",
+    "pnpm": ">=12.0.0"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "check-types": "turbo run check-types",
+    "test": "turbo run test",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "ci:lint": "biome ci .",
+    "boundaries": "turbo boundaries",
+    "clean": "turbo run clean"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "catalog:",
+    "turbo": "catalog:",
+    "typescript": "catalog:"
+  }
+}
